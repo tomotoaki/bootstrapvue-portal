@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="content-language" content="ja">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ポータル</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap-vue.min.css" />
+	<link rel="stylesheet" href="./css/bootstrap-icons.css" />
+	<link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+	<div id="app" v-cloak>
+		<header class="fixed-top text-nowrap">
+			<b-navbar toggleable="lg" type="light" variant="light">
+				<b-navbar-brand href="#">
+					<img src="./img/logo.png" height="30" class="align-top" alt="logo">
+					ポータル
+				</b-navbar-brand>
+				<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+				<b-collapse id="nav-collapse" is-nav>
+					<b-navbar-nav>
+						<b-nav-item v-for="item in headers.items" :key="item.name" :href="item.url" :disabled="item.disabled" :target="item.target">{{item.name}}</b-nav-item>
+					</b-navbar-nav>
+				</b-collapse>
+			</b-navbar>
+		</header>
+
+		<b-container style="margin-top: 80px; margin-bottom: 30px;">
+			<b-row>
+				<b-col cols="12" lg="9">
+					<div v-if="exists(attentions)">
+						<h1 class="text-dark bg-light border-danger mt-4 mb-3">緊急情報</h1>
+						<b-table id="attentions" borderless striped hover small thead-class="d-none" :items="attentions.items" :fields="fields.attentions" sort-by="date" sort-desc	:per-page="attentions.per" :current-page="attentions.current">
+							<template #table-colgroup="scope">
+								<col v-for="field in scope.fields" :key="field.key" :style="{ width: field.key === 'message' ? 'auto' : field.key === 'date' ? '110px' : '100px' }">
+							</template>
+							<template #cell(date)="data">
+								<span v-if="data.item.new">{{data.value}}<small class="ml-1 align-top text-danger"><small>New</small></small></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+							<template #cell(label)="data">
+								<b-badge :variant="data.value.color">{{data.value.name}}</b-badge>
+							</template>
+							<template #cell(message)="data">
+								<span v-if="data.item.url"><a v-bind:href="data.item.url" target="_blank">{{data.value}}</a></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+						</b-table>
+						<b-pagination pills v-if="rows(attentions) > attentions.per" v-model="attentions.current" :total-rows="rows(attentions)" :per-page="attentions.per" aria-controls="attentions" size="sm"></b-pagination>
+					</div>
+
+					<div v-if="exists(infos)">
+						<h1 class="text-dark bg-light border-info mt-4 mb-3">新着情報</h1>
+						<b-table id="infos" borderless striped hover small thead-class="d-none" :items="infos.items" :fields="fields.infos" sort-by="date" sort-desc :per-page="infos.per" :current-page="infos.current">
+							<template #table-colgroup="scope">
+								<col v-for="field in scope.fields" :key="field.key" :style="{ width: field.key === 'message' ? 'auto' : field.key === 'date' ? '110px' : '100px' }">
+							</template>
+							<template #cell(date)="data">
+								<span v-if="data.item.new">{{data.value}}<small class="ml-1 align-top text-danger"><small>New</small></small></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+							<template #cell(label)="data">
+								<b-badge :variant="data.value.color">{{data.value.name}}</b-badge>
+							</template>
+							<template #cell(message)="data">
+								<span v-if="data.item.url"><a v-bind:href="data.item.url" target="_blank">{{data.value}}</a></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+						</b-table>
+						<b-pagination pills v-if="rows(infos) > infos.per" v-model="infos.current" :total-rows="rows(infos)" :per-page="infos.per" aria-controls="infos" size="sm"></b-pagination>
+					</div>
+
+					<div v-if="exists(forms)">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">様式集</h1>
+						<b-table id="forms" striped hover small :items="forms.items" :fields="fields.forms" :per-page="forms.per" :current-page="forms.current">
+							<template #cell(spec)="data">
+								<span v-if="data.value.url"><a v-bind:href="data.value.url" target="_blank">{{data.value.name}}</a></span>
+								<span v-else>{{data.value.name}}</span>
+							</template>
+							<template #cell(name)="data">
+								<span v-if="data.item.url"><a v-bind:href="data.item.url" target="_blank">{{data.value}}</a></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+						</b-table>
+						<b-pagination pills v-if="rows(forms) > forms.per" v-model="forms.current" :total-rows="rows(forms)" :per-page="forms.per" aria-controls="forms" size="sm"></b-pagination>
+					</div>
+
+					<div v-if="exists(manuals)">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">マニュアル</h1>
+						<b-table id="manuals" striped hover small :items="manuals.items" :fields="fields.manuals" :per-page="manuals.per" :current-page="manuals.current">
+							<template #cell(system)="data">
+								<span v-if="data.value.url"><a v-bind:href="data.value.url" target="_blank">{{data.value.name}}</a></span>
+								<span v-else>{{data.value.name}}</span>
+							</template>
+							<template #cell(name)="data">
+								<span v-if="data.item.url"><a v-bind:href="data.item.url" target="_blank">{{data.value}}</a></span>
+								<span v-else>{{data.value}}</span>
+							</template>
+						</b-table>
+						<b-pagination pills v-if="rows(manuals) > manuals.per" v-model="manuals.current" :total-rows="rows(manuals)" :per-page="manuals.per" aria-controls="manuals" size="sm"></b-pagination>
+					</div>
+				</b-col>
+
+				<b-col cols="12" lg="3">
+					<div v-if="exists(banners) || exists(links)">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">リンク</h1>
+						<b-row cols="2" cols-md="3" cols-lg="1">
+							<b-col v-for="item in banners.items" class="mb-1">
+								<span v-if="item.url"><a v-bind:href="item.url" :target="item.target"><img v-if="item.img" v-bind:src="imgroot + item.img.url" v-bind:alt="item.name"></a></span>
+								<span v-else><img v-if="item.img" v-bind:src="imgroot + item.img.url" v-bind:alt="item.name"></span>
+							</b-col>
+							<b-col v-for="item in links.items" class="mb-1">
+								<b-icon icon="box-arrow-up-right" variant="secondary" font-scale="0.7"></b-icon>
+								<span v-if="item.url"><a v-bind:href="item.url" :target="item.target"><span v-html="item.name"></a></span>
+								<span v-else><span v-html="item.name"></span></span>
+							</b-col>
+						</b-row>
+					</div>
+
+					<div v-if="exists(contacts)">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">問い合わせ先</h1>
+						<b-row cols="2" cols-lg="1">
+							<b-col v-for="item in contacts.items">
+								<b-card no-body class="text-break mb-3">
+									<b-card-header>
+										{{item.name}}
+									</b-card-header>
+									<b-list-group flush>
+										<b-list-group-item class="d-flex justify-content-start align-items-center">
+											<b-icon icon="telephone" class="mr-1"></b-icon>
+											{{item.tel}}
+										</b-list-group-item>
+										<b-list-group-item class="d-flex justify-content-start align-items-center">
+											<b-icon icon="envelope" class="mr-1"></b-icon>
+											{{item.mail}}
+										</b-list-group-item>
+									</b-list-group>
+								</b-card>
+							</b-col>
+						</b-row>
+					</div>
+				</b-col>
+			</b-row>
+		</b-container>
+
+		<footer class="fixed-bottom bg-light text-muted text-center text-nowrap">
+			<small>Copyright(C) 2021</small>
+		</footer>
+	</div>
+
+	<script src="./js/polyfill.min.js"></script>
+	<script src="./js/vue.min.js"></script>
+	<script src="./js/bootstrap-vue.min.js"></script>
+	<script src="./js/bootstrap-vue-icons.min.js"></script>
+	<script src="./js/axios.min.js"></script>
+	<script src="./js/const.js"></script>
+	<script src="./js/main.js"></script>
+
+</body>
+</html>
