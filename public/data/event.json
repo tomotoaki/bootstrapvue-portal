@@ -1,0 +1,91 @@
+{
+  "events": [
+    {
+      "title": "公告日",
+      "start": "2023-08-07",
+      "textColor": "white",
+      "borderColor": "blue",
+      "backgroundColor": "blue"
+    },
+    {
+      "title": "入札締切日",
+      "start": "2023-08-08",
+      "textColor": "white",
+      "borderColor": "orange",
+      "backgroundColor": "orange"
+    },
+    {
+      "title": "開札日",
+      "start": "2023-08-09",
+      "textColor": "white",
+      "borderColor": "red",
+      "backgroundColor": "red"
+    },
+    {
+      "title": "落札候補者決定通知日",
+      "start": "2023-08-10",
+      "textColor": "white",
+      "borderColor": "yellowgreen",
+      "backgroundColor": "yellowgreen"
+    },
+    {
+      "title": "落札決定通知日",
+      "start": "2023-08-11",
+      "textColor": "white",
+      "borderColor": "green",
+      "backgroundColor": "green"
+    },
+    {
+      "title": "工事Ａ",
+      "start": "2023-08-14",
+      "end": "2023-08-15",
+      "className": "lab koukoku"
+    },
+    {
+      "title": "工事Ｂ",
+      "start": "2023-08-16",
+      "className": "lab nyusatsu"
+    },
+    {
+      "title": "工事Ｃ",
+      "start": "2023-08-18",
+      "className": "lab kaisatsu"
+    },
+    {
+      "title": "工事Ｄ",
+      "start": "2023-08-22",
+      "className": "lab kouho"
+    },
+    {
+      "title": "工事Ｅ",
+      "start": "2023-08-24",
+      "className": "lab rakusatsu"
+    },
+    {
+      "title": "工事①",
+      "start": "2023-08-28",
+      "end": "2023-08-15",
+      "className": "lab koukoku"
+    },
+    {
+      "title": "工事②",
+      "start": "2023-08-28",
+      "className": "lab nyusatsu"
+    },
+    {
+      "title": "工事③",
+      "start": "2023-08-28",
+      "className": "lab kaisatsu"
+    },
+    {
+      "title": "工事④",
+      "start": "2023-08-28",
+      "className": "lab kouho"
+    },
+    {
+      "title": "工事⑤",
+      "start": "2023-08-28",
+      "className": "lab rakusatsu"
+    }
+  ]
+}
