@@ -95,6 +95,17 @@ var app = new Vue({
 			dayCellContent: function (arg) {
 				return arg.dayNumberText.replace('日', '');
 			},
+			dayCellClassNames: function (arg) {
+				date.setFullYear(
+					arg.date.getFullYear(),
+					arg.date.getMonth(),
+					arg.date.getDate()
+				);
+				const holiday = date.getHoliday();
+				if (holiday !== "") {
+					return ["fc-day-hol"];
+				}
+			},
 			dayCellDidMount: function (arg) {
 				date.setFullYear(
 					arg.date.getFullYear(),
@@ -104,7 +115,7 @@ var app = new Vue({
 				const holiday = date.getHoliday();
 				if (holiday !== "") {
 					arg.el.insertAdjacentHTML("afterbegin", "<div class=\"fc-day-hol-name\">" + holiday + "</div>");
-					arg.el.classList.add("fc-day-hol");
+					// arg.el.classList.add("fc-day-hol");
 				}
 			},
 			events: self.events,
