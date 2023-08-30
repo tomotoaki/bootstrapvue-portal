@@ -32,8 +32,20 @@
 			<b-row>
 				<b-col cols="12" lg="9">
 					<div v-if="exists(attentions)">
-						<h1 class="text-dark bg-light border-danger mt-4 mb-3">緊急情報</h1>
-						<b-table id="attentions" borderless striped hover small thead-class="d-none" :items="attentions.items" :fields="fields.attentions" sort-by="date" sort-desc	:per-page="attentions.per" :current-page="attentions.current">
+						<h1 class="text-dark bg-light border-danger mt-4 mb-3">
+							<b-row>
+								<b-col cols="8">緊急情報</b-col>
+								<b-col cols="4">
+									<b-input-group size="sm">
+										<b-input-group-prepend is-text>
+											<b-icon icon="search"></b-icon>
+										</b-input-group-prepend>
+										<b-form-input id="filter-input" v-model="attentions.filter" type="search" size="sm" placeholder="filter"></b-form-input>
+									</b-input-group>
+								</b-col>
+							</b-row>
+						</h1>
+						<b-table id="attentions" borderless striped hover small thead-class="d-none" :items="attentions.items" :fields="fields.attentions" sort-by="date" sort-desc	:per-page="attentions.per" :current-page="attentions.current" :filter="attentions.filter">
 							<template #table-colgroup="scope">
 								<col v-for="field in scope.fields" :key="field.key" :style="{ width: field.key === 'message' ? 'auto' : field.key === 'date' ? '110px' : '100px' }">
 							</template>
@@ -53,8 +65,20 @@
 					</div>
 
 					<div v-if="exists(infos)">
-						<h1 class="text-dark bg-light border-info mt-4 mb-3">新着情報</h1>
-						<b-table id="infos" borderless striped hover small thead-class="d-none" :items="infos.items" :fields="fields.infos" sort-by="date" sort-desc :per-page="infos.per" :current-page="infos.current">
+						<h1 class="text-dark bg-light border-info mt-4 mb-3">
+							<b-row>
+								<b-col cols="8">新着情報</b-col>
+								<b-col cols="4">
+									<b-input-group size="sm">
+										<b-input-group-prepend is-text>
+											<b-icon icon="search"></b-icon>
+										</b-input-group-prepend>
+										<b-form-input id="filter-input" v-model="infos.filter" type="search" size="sm" placeholder="filter"></b-form-input>
+									</b-input-group>
+								</b-col>
+							</b-row>
+						</h1>
+						<b-table id="infos" borderless striped hover small thead-class="d-none" :items="infos.items" :fields="fields.infos" sort-by="date" sort-desc :per-page="infos.per" :current-page="infos.current" :filter="infos.filter">
 							<template #table-colgroup="scope">
 								<col v-for="field in scope.fields" :key="field.key" :style="{ width: field.key === 'message' ? 'auto' : field.key === 'date' ? '110px' : '100px' }">
 							</template>
@@ -74,8 +98,20 @@
 					</div>
 
 					<div v-if="exists(forms)">
-						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">様式集</h1>
-						<b-table id="forms" striped hover small :items="forms.items" :fields="fields.forms" :per-page="forms.per" :current-page="forms.current">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">
+							<b-row>
+								<b-col cols="8">関係様式集</b-col>
+								<b-col cols="4">
+									<b-input-group size="sm">
+										<b-input-group-prepend is-text>
+											<b-icon icon="search"></b-icon>
+										</b-input-group-prepend>
+										<b-form-input id="filter-input" v-model="forms.filter" type="search" size="sm" placeholder="filter"></b-form-input>
+									</b-input-group>
+								</b-col>
+							</b-row>
+						</h1>
+						<b-table id="forms" striped hover small :items="forms.items" :fields="fields.forms" :per-page="forms.per" :current-page="forms.current" :filter="forms.filter">
 							<template #cell(spec)="data">
 								<span v-if="data.value.url"><a v-bind:href="data.value.url" target="_blank">{{data.value.name}}</a></span>
 								<span v-else>{{data.value.name}}</span>
@@ -89,8 +125,20 @@
 					</div>
 
 					<div v-if="exists(manuals)">
-						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">マニュアル</h1>
-						<b-table id="manuals" striped hover small :items="manuals.items" :fields="fields.manuals" :per-page="manuals.per" :current-page="manuals.current">
+						<h1 class="text-dark bg-light border-secondary mt-4 mb-3">
+							<b-row>
+								<b-col cols="8">操作マニュアル</b-col>
+								<b-col cols="4">
+									<b-input-group size="sm">
+										<b-input-group-prepend is-text>
+											<b-icon icon="search"></b-icon>
+										</b-input-group-prepend>
+										<b-form-input id="filter-input" v-model="manuals.filter" type="search" size="sm" placeholder="filter"></b-form-input>
+									</b-input-group>
+								</b-col>
+							</b-row>
+						</h1>
+						<b-table id="manuals" striped hover small :items="manuals.items" :fields="fields.manuals" :per-page="manuals.per" :current-page="manuals.current" :filter="manuals.filter">
 							<template #cell(system)="data">
 								<span v-if="data.value.url"><a v-bind:href="data.value.url" target="_blank">{{data.value.name}}</a></span>
 								<span v-else>{{data.value.name}}</span>
