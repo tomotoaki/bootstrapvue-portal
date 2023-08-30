@@ -12,10 +12,10 @@ var app = new Vue({
 			manuals: [{ key: "system", label: "システム" }, { key: "name", label: "マニュアル" }]
 		},
 		headers: { items: null },
-		attentions: { items: null, per: 5, current: 1 },
-		infos: { items: null, per: 5, current: 1 },
-		forms: { items: null, per: 5, current: 1 },
-		manuals: { items: null, per: 10, current: 1 },
+		attentions: { items: null, per: 5, current: 1, filter: null },
+		infos: { items: null, per: 5, current: 1, filter: null },
+		forms: { items: null, per: 5, current: 1, filter: null },
+		manuals: { items: null, per: 10, current: 1, filter: null },
 		contacts: { items: null },
 		banners: { items: null },
 		links: { items: null }
