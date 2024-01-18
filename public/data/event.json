@@ -1,0 +1,85 @@
+{
+  "events": [
+    {
+      "title": "工事Ａ",
+      "start": "2024-01-07",
+      "textColor": "white",
+      "borderColor": "blue",
+      "backgroundColor": "blue",
+      "className": "lab koukoku"
+    },
+    {
+      "title": "工事Ｂ",
+      "start": "2024-01-09",
+      "textColor": "white",
+      "borderColor": "orange",
+      "backgroundColor": "orange",
+      "className": "lab nyusatsu"
+    },
+    {
+      "title": "工事Ｃ",
+      "start": "2024-01-15",
+      "textColor": "white",
+      "borderColor": "red",
+      "backgroundColor": "red",
+      "className": "lab kaisatsu"
+    },
+    {
+      "title": "工事Ｄ",
+      "start": "2024-01-18",
+      "textColor": "white",
+      "borderColor": "yellowgreen",
+      "backgroundColor": "yellowgreen",
+      "className": "lab kouho"
+    },
+    {
+      "title": "工事Ｅ",
+      "start": "2024-01-25",
+      "textColor": "white",
+      "borderColor": "green",
+      "backgroundColor": "green",
+      "className": "lab rakusatsu"
+    },
+    {
+      "title": "工事①",
+      "start": "2024-01-31",
+      "end": "2024-01-15",
+      "textColor": "white",
+      "borderColor": "blue",
+      "backgroundColor": "blue",
+      "className": "lab koukoku"
+    },
+    {
+      "title": "工事②",
+      "start": "2024-01-31",
+      "textColor": "white",
+      "borderColor": "orange",
+      "backgroundColor": "orange",
+      "className": "lab nyusatsu"
+    },
+    {
+      "title": "工事③",
+      "start": "2024-01-31",
+      "textColor": "white",
+      "borderColor": "red",
+      "backgroundColor": "red",
+      "className": "lab kaisatsu"
+    },
+    {
+      "title": "工事④",
+      "start": "2024-01-31",
+      "textColor": "white",
+      "borderColor": "yellowgreen",
+      "backgroundColor": "yellowgreen",
+      "className": "lab kouho"
+    },
+    {
+      "title": "工事⑤",
+      "start": "2024-01-31",
+      "textColor": "white",
+      "borderColor": "green",
+      "backgroundColor": "green",
+      "className": "lab rakusatsu"
+    }
+  ]
+}

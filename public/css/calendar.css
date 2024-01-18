@@ -1,0 +1,55 @@
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0.7rem;
+}
+
+td.fc-day-sat {
+    background-color: #eaf4ff;
+}
+
+td.fc-day-sun,
+td.fc-day-hol {
+    background-color: #ffeaea;
+}
+
+.fc-day {
+    position: relative;
+}
+
+.fc-day-hol-name {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.7em;
+    color: red;
+}
+
+.koukoku .fc-event-title::before {
+    content: "公告";
+}
+
+.nyusatsu .fc-event-title::before {
+    content: "入札";
+}
+
+.kaisatsu .fc-event-title::before {
+    content: "開札";
+}
+
+.kouho .fc-event-title::before {
+    content: "候補";
+}
+
+.rakusatsu .fc-event-title::before {
+    content: "落札";
+}
+
+.lab .fc-event-title::before {
+    border-radius: 20%;
+    color: dimgray;
+    background-color: white;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-align: center;
+    padding: 2px;
+    margin: 2px;
+}

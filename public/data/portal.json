@@ -119,13 +119,13 @@
     {"name":"banner2","url":"#","img":{"name":"banner200x60.png","alternativeText":"banner","caption":"バナー","width":200,"height":60,"ext":".png","mime":"image/png","url":"img/banner200x60.png"}}
   ],
   "links":[
-    {"name":"よくある質問(FAQ)<i class=\"bi bi-chat-dots\"></i>","url":"faq.html"},
+    {"name":"<i class=\"bi bi-chat-dots\"></i>よくある質問(FAQ)","url":"faq.html"},
+    {"name":"<i class=\"bi bi-calendar3\"></i>カレンダー","url":"calendar.html"},
     {"name":"リンク１"},
     {"name":"リンク２","url":"#2"},
     {"name":"リンク３","url":"#3"}
   ],
   "contacts":[
-    {"name":"□□□□□□□□□■","tel":"999-999-9999","mail":"xxxxx@xxxxxxxxxx"},
     {"name":"□□□□□□□□□■","tel":"999-999-9999","mail":"xxxxx@xxxxxxxxxx"}
   ]
 }
