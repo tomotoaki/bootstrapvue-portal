@@ -41,7 +41,7 @@ var app = new Vue({
 			self.events = data.events;
 		}
 
-		// FAQを読み込む
+		// イベントを読み込む
 		axios.get(EVENT_API)
 			.then(function (response) {
 				// データを取得
